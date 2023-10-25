@@ -2,7 +2,7 @@
      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Net Pizza</a>
+            <a class="navbar-brand" th:href="@{/}">Net Pizza</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,20 +15,29 @@
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
                     </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link active" aria-current="page" th:href="@{/kapcsolat}">kapcsolat</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link active" aria-current="page" th:href="@{/kapcsolat}">Üzenetküldés</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="nav-link active" aria-current="page" th:href="@{/admin/home}">Admin</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/pizza}">Pizzák</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/rendeles}">Rendelések</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/kategoria}">Kategóriák</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/uzenetek}">Üzenetek</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <h3 class="nav-link active">Welcome <span sec:authentication="principal.username">User</span></h3>
                     </li>
                     <li class="nav-item" sec:authorize="isAnonymous()">
                         <a class="nav-link active" aria-current="page" th:href="@{/regisztral}">Regisztrál</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                     </li>
                 </ul>
             </div>

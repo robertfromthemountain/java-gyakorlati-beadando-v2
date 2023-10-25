@@ -28,7 +28,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz").permitAll()
+                .requestMatchers ("/resources/**", "/", "/regisztral", "/regisztral_feldolgoz", "/kapcsolat").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

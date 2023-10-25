@@ -21,30 +21,63 @@ public class HomeController {
     public String user() {
         return "user";
     }
-    @Autowired private PizzaRepo pizzaRepo;
-    @Autowired private KategoriaRepo kategoriaRepo;
-    @Autowired private RendelesRepo rendelesRepo;
+
+    @GetMapping("/kapcsolat")
+    public String kapcsolat() {
+        return "kapcsolat";
+    }
+
     @GetMapping("/admin/home")
     public String admin(Model model) {
+        return "admin";
+    }
+    @Autowired private UzenetRepo uzenetRepo;
+    @GetMapping("/admin/uzenetek")
+    public String uzenetek(Model model){
+        List<Uzenet> uzenets = new ArrayList<>();
+        for (Uzenet uzenet:uzenetRepo.findAll()){
+            uzenets.add(uzenet);
+        }
+        model.addAttribute("uzenets", uzenets);
+        return "uzenetek";
+    }
+
+    //PIZZÁK RÉSZ
+    @Autowired private PizzaRepo pizzaRepo;
+    @GetMapping("/admin/pizza")
+    public String pizza(Model model){
         List<Pizza> pizzas = new ArrayList<>();
         for (Pizza pizza : pizzaRepo.findAll()){
             pizzas.add(pizza);
         }
         model.addAttribute("pizzas", pizzas);
+        return "pizza";
+    }
 
+    //RENDELÉSEK RÉSZ
+    @Autowired private RendelesRepo rendelesRepo;
+    @GetMapping("/admin/rendeles")
+    public String rendeles(Model model){
         List<Rendeles> rendelesek = new ArrayList<>();
-        for (Rendeles rendeles:rendelesRepo.findAll()){
+        for (Rendeles rendeles : rendelesRepo.findAll()){
             rendelesek.add(rendeles);
         }
         model.addAttribute("rendelesek", rendelesek);
+        return "rendeles";
+    }
 
+    //KATEGÓRIA RÉSZ
+    @Autowired private KategoriaRepo kategoriaRepo;
+    @GetMapping("/admin/kategoria")
+    public String kategoria(Model model){
         List<Kategoria> kategoriak = new ArrayList<>();
         for (Kategoria kategoria:kategoriaRepo.findAll()){
             kategoriak.add(kategoria);
         }
         model.addAttribute("kategoriak", kategoriak);
-        return "admin";
+        return "kategoria";
     }
+
     @GetMapping("/regisztral")
     public String greetingForm(Model model) {
         model.addAttribute("reg", new User());

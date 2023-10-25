@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin főoldal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="menu"></div>
+
+<div class="container mt-5 border-1 shadow rounded">
+    <div class="row">
+        <h1>Pizzák: <span class="text-muted fs-1">(ezt az oldalt csak egy Admin láthatja)</span></h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="1">Név</th>
+                    <th scope="col" colspan="1">Kategória</th>
+                    <th scope="col" colspan="1">Vegetáriánus</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pizza:${pizzas}">
+                    <td colspan="1" th:text="${pizza.nev}"></td>
+                    <td colspan="1" th:text="${pizza.kategorianev}"></td>
+                    <td colspan="1" th:text="${pizza.vegetarianus} ? 'Igen' : 'Nem'"></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
