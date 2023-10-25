@@ -25,28 +25,25 @@ public class HomeController {
     @Autowired private KategoriaRepo kategoriaRepo;
     @Autowired private RendelesRepo rendelesRepo;
     @GetMapping("/admin/home")
-    public String admin(Model model, String uzenet) {
-        String str = A();
-        model.addAttribute("str", str);
+    public String admin(Model model) {
+        List<Pizza> pizzas = new ArrayList<>();
+        for (Pizza pizza : pizzaRepo.findAll()){
+            pizzas.add(pizza);
+        }
+        model.addAttribute("pizzas", pizzas);
+
+        List<Rendeles> rendelesek = new ArrayList<>();
+        for (Rendeles rendeles:rendelesRepo.findAll()){
+            rendelesek.add(rendeles);
+        }
+        model.addAttribute("rendelesek", rendelesek);
+
+        List<Kategoria> kategoriak = new ArrayList<>();
+        for (Kategoria kategoria:kategoriaRepo.findAll()){
+            kategoriak.add(kategoria);
+        }
+        model.addAttribute("kategoriak", kategoriak);
         return "admin";
-    }
-    String A(){
-        String str="";
-        for (Pizza pizza: pizzaRepo.findAll()){
-            str+=pizza.getNev()+"; "+pizza.getKategorianev()+"; "+pizza.isVegetarianus();
-            str+="<br>";
-        }
-        str+="<br>";
-        for (Kategoria kategoria: kategoriaRepo.findAll()){
-            str+=kategoria.getNev()+"; "+kategoria.getSzam();
-            str+="<br>";
-        }
-        str+="<br>";
-        for (Rendeles rendeles: rendelesRepo.findAll()){
-            str+=rendeles.getAz()+"; "+rendeles.getPizzanev()+"; "+rendeles.getDarab()+"; "+rendeles.getFelvetel()+"; "+rendeles.getKiszallitas();
-            str+="<br>";
-        }
-        return str;
     }
     @GetMapping("/regisztral")
     public String greetingForm(Model model) {

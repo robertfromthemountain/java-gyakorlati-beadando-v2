@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 public class Kategoria {
     @Id
     private String nev;
-    private int szam;
+    private int ar;
 
     public String getNev() {
         return nev;
@@ -19,11 +19,11 @@ public class Kategoria {
         this.nev = nev;
     }
 
-    public int getSzam() {
-        return szam;
+    public int getAr() {
+        return ar;
     }
 
-    public void setSzam(int szam) {
-        this.szam = szam;
+    public void setAr(int ar) {
+        this.ar = ar;
     }
 }

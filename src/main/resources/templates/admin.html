@@ -11,46 +11,75 @@
 <body>
 <div th:insert="menu"></div>
 <h1>Csak az Admin láthatja ezt az oldalt</h1>
-<p th:utext="${str}"></p>
 <div class="container mt-5 border-1 shadow rounded">
     <div class="row">
-        <h1>Beérkezett üzenetek:</h1>
+        <h1>Pizzák:</h1>
     </div>
     <div class="row">
         <div class="container">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" colspan="1">Beküldött</th>
                     <th scope="col" colspan="1">Név</th>
-                    <th scope="col" colspan="3">Üzenet</th>
+                    <th scope="col" colspan="1">Kategórianév</th>
+                    <th scope="col" colspan="3">Vegetáriánus</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td colspan="1">11:20</td>
-                    <td colspan="1">Otto</td>
-                    <td colspan="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam doloremque
-                        possimus excepturi atque? Porro vel, fugit neque nobis obcaecati inventore fugiat nihil
-                        atque commodi provident, delectus doloribus, asperiores temporibus tempora.</td>
+                <tr th:each="pizza:${pizzas}">
+                    <td colspan="1" th:text="${pizza.nev}"></td>
+                    <td colspan="1" th:text="${pizza.kategorianev}"></td>
+                    <td colspan="3" th:text="${pizza.vegetarianus} ? 'Igen' : 'Nem'"></td>
                 </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h1>Rendelések:</h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <th scope="row">2</th>
-                    <td colspan="1">11:31</td>
-                    <td colspan="1">Thornton</td>
-                    <td colspan="3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam fugit
-                        numquam harum quae inventore repellat quibusdam omnis similique, enim obcaecati animi
-                        exercitationem odio. Labore dolorem rerum repellat nisi nobis? Perspiciatis.</td>
+                    <th scope="col" colspan="1">Azonosító</th>
+                    <th scope="col" colspan="1">Név</th>
+                    <th scope="col" colspan="3">Darab</th>
+                    <th scope="col" colspan="3">Felvétel</th>
+                    <th scope="col" colspan="3">Kiszállítás</th>
                 </tr>
+                </thead>
+                <tbody>
+                <tr th:each="rendelesek:${rendelesek}">
+                    <td colspan="1" th:text="${rendelesek.az}"></td>
+                    <td colspan="1" th:text="${rendelesek.pizzanev}"></td>
+                    <td colspan="3" th:text="${rendelesek.darab}"></td>
+                    <td colspan="3" th:text="${rendelesek.felvetel}"></td>
+                    <td colspan="3" th:text="${rendelesek.kiszallitas}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h1>Kategóriák:</h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <th scope="row">3</th>
-                    <td colspan="1">10:20</td>
-                    <td colspan="1">asd</td>
-                    <td colspan="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dolorem
-                        aspernatur fugit dicta consectetur porro aliquid alias voluptatem perspiciatis. Eligendi
-                        doloremque non veritatis, tenetur ullam illo labore totam ab nostrum.</td>
+                    <th scope="col" colspan="1">Név</th>
+                    <th scope="col" colspan="1">Ár</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="kategoriak:${kategoriak}">
+                    <td colspan="1" th:text="${kategoriak.nev}"></td>
+                    <td colspan="1" th:text="${kategoriak.ar}"></td>
                 </tr>
                 </tbody>
             </table>
