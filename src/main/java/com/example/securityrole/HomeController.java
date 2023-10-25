@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+
     @GetMapping("/")
     public String home() {
         return "index";
@@ -20,9 +21,32 @@ public class HomeController {
     public String user() {
         return "user";
     }
+    @Autowired private PizzaRepo pizzaRepo;
+    @Autowired private KategoriaRepo kategoriaRepo;
+    @Autowired private RendelesRepo rendelesRepo;
     @GetMapping("/admin/home")
-    public String admin() {
+    public String admin(Model model, String uzenet) {
+        String str = A();
+        model.addAttribute("str", str);
         return "admin";
+    }
+    String A(){
+        String str="";
+        for (Pizza pizza: pizzaRepo.findAll()){
+            str+=pizza.getNev()+"; "+pizza.getKategorianev()+"; "+pizza.isVegetarianus();
+            str+="<br>";
+        }
+        str+="<br>";
+        for (Kategoria kategoria: kategoriaRepo.findAll()){
+            str+=kategoria.getNev()+"; "+kategoria.getSzam();
+            str+="<br>";
+        }
+        str+="<br>";
+        for (Rendeles rendeles: rendelesRepo.findAll()){
+            str+=rendeles.getAz()+"; "+rendeles.getPizzanev()+"; "+rendeles.getDarab()+"; "+rendeles.getFelvetel()+"; "+rendeles.getKiszallitas();
+            str+="<br>";
+        }
+        return str;
     }
     @GetMapping("/regisztral")
     public String greetingForm(Model model) {
