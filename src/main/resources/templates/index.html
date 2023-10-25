@@ -2,8 +2,88 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Főoldal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 <div th:insert="menu"></div>
+
+
+<div class="container py-5">
+    <div class="row">
+        <h1>Üdvözöllek az oldalon!</h1>
+        <hr>
+        <p>Cégünk pizzarendelésekkel foglalkozik, az alábbi weboldalon tájékozódhat árainkról, elérhető
+            kínálatunkról. Rendelését csak SMS-ben adhatja le!</p>
+        <p><a th:href="@{/kapcsolat}">Kapcsolat</a> menüpont alatt írhat nekünk üzenetet tapasztalatairól.</p>
+        <p><a th:href="@{/regisztral}">Regisztráció</a> oldalunkon regisztrálhat rendszerünkbe.</p>
+        <p><a th:href="@{/login}">Bejelentkezés</a> menüpont alatt bejelentkezhet rendszerünkbe.</p>
+    </div>
+
+    <hr>
+    <div class="row">
+
+        <div class="container w-75 border rounded shadow my-5">
+            <div class="row text-center">
+                <h1 class="display-6 text-uppercase fs-3 pt-3">Elérhetőségeink</h1>
+            </div>
+            <div class="row align-items-center mx-5 justify-content-center">
+                <div class="col-12 col-lg-6 text-center my-4 my-lg-0 align-self-lg-center pb-lg-5">
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-geo fs-2 p-0 m-0"></i>
+                            <h2 class="display-5 text-uppercase fs-5 p-0 m-0 mb-2">Látogasson el hozzánk</h2>
+                            <p class="p-0 m-0 lh-1">
+                                <span class="fst-italic fw-bold">6000, Kecskemét, Homokszem u. 3-6, HU</span>
+                            </p>
+
+                        </li>
+
+                        <li class="mb-3">
+                            <i class="bi bi-phone fs-2 p-0 m-0"></i>
+                            <h2 class="display-5 text-uppercase fs-5 p-0 m-0 mb-2">Hívjon minket</h2>
+                            <p class="p-0 m-0 lh-1">
+                                <span class="fst-italic fw-bold">+ 01 234 567 89</span>
+                                <br>
+                                <span class="fw-normal">Minden hétköznap 0-24!</span>
+                            </p>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-envelope fs-2 p-0 m-0"></i>
+                            <h2 class="display-5 text-uppercase fs-5 p-0 m-0 mb-2">Írjon nekünk</h2>
+                            <p class="p-0 m-0 lh-1">
+                                <span class="fst-italic fw-bold">info@thenetpizza.com</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-6 text-center my-3">
+                    <form id="contact-form" name="contact-form" action="?contact" method="POST">
+
+                        <div class="form-outline mb-4 text-start">
+                            <label class="" for="email"><i class="bi bi-envelope-at-fill mx-1"></i>Az ön emailcíme:</label>
+                            <input type="email" id="email" name="email" class="form-control form-control-md mb-4" placeholder="példa@email.com" required />
+                        </div>
+
+                        <div class="form-outline mb-4 text-start">
+                            <label class="" for="message"><i class="bi bi-envelope-fill mx-1"></i>Üzenet:</label>
+                            <textarea type="text" id="message" name="message" rows="5" class="form-control md-textarea" placeholder="Ide írja a problémáját!"></textarea>
+                        </div>
+
+                        <button for="submit" value="1" name="submit" class="btn btn-outline-success btn-md gradient-custom-4 w-100">Küldés</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
